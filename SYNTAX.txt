@@ -1,0 +1,44 @@
+// Simple example
+
+AnotherType {
+    f32 number;
+}
+
+// define some oneof type
+
+PhoneType [
+    // enumerate CONSTANTS, Numbers, some Strings, and other types
+    MOBILE,  // === 0
+    WORK,    // === 1
+    HOME     // === 2,
+    'NONE',  // static string value
+    AnotherType
+]
+
+// define some object types
+
+Phone {
+    PhoneType type = MOBILE; // after "=" specify default value for optional property
+    Utf8[12] number; // 0-12 chars. required property
+}
+
+User {
+    Utf8 name; // unlimited chars ; required property
+    Utf8[2,20] surname; // 2-20 chars. required property. require min 2 chars
+    Utf8[10,] address; // 10-unlimited chars. 10 chars min required
+    Phone phones[];  // unlimited phone list. required property
+    Phone phones2[2,] // 2-unlimited items. 2 Phone value required. required property
+    Phone phones3[1,5] = [      // 1-5 items. 1 Phone value required. optional property
+        {
+            type: MOBILE,
+            number: '+23234234243'
+        }
+    ]
+
+    Bin[1024] photo = photo.jpg; // optional property. 0-1024 bytes.
+}
+
+
+
+
+
