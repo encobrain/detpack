@@ -1,0 +1,108 @@
+Types
+
+Num
+   Uint
+        Uint8  / u8
+        Uint16 / u16
+        Uint32 / u32
+        Uint64 / u64
+   Int
+        Int8  / i8
+        Int16 / i16
+        Int32 / i32
+        Int64 / i64
+   Half   / f16
+   Float  / f32
+   Double / f64
+   Quad   / f128
+   +Inf
+   -Inf
+   Nan
+Utf8
+Bool
+Bin
+
+
+
+Uint format.
+Encode example for 0x01020304 number: 0x 04 06 08 88
+one:
+    0-8 bytes               : 0xxxxxxx
+    1 byte                  : 1xxxxxxx
+list:
+    Uint bytes              : Count
+    Uint bytes * Count      : numbers
+
+Utf8 format
+one:
+    Uint bytes   : Length
+    Length bytes : String
+list:
+    Uint bytes              : Count
+    Uint bytes   \ * Count  : Length
+    Length bytes /          : string
+
+Bool format.
+Encode example for list [true, false, true, true]: 0x 84 b0
+one:
+   1 bit index              : true or false
+list:
+   Uint bytes               : Count
+   1+ bytes                 : Values
+
+Int format.
+one:
+    1 bit index             : sign: 0-positive 1-negative
+    Uint bytes              : number
+list:
+    Uint bytes              : Count
+    1 bit index \ * Count   : sign
+    Uint bytes  /           : number
+
+Uint8,16,32,64 & Int8,16,32,64 format.
+one:
+    1,2,4,8 bytes   : number
+list:
+    Uint bytes              : Count
+    1,2,4,8 bytes * Count   : number
+
+Num format.
+0   Uint8
+1   Uint16
+2   Uint32
+3   Uint64
+4   Int8
+5   Int16
+6   Int32
+7   Int64
+8   Half
+9   Float
+A   Double
+B   Quad
+C   +Inf
+D   -Inf
+E   Nan
+
+one:
+    4 bits index    : type (see above)
+    0-16 bytes      : value
+list:
+    Uint bytes              : Count
+    4 bits index \ * Count  : type
+    0-16 bytes   /          : value
+
+Bin format.
+one:
+    Uint bytes              : Length
+    Length bytes            : data
+list:
+    Uint bytes              : Count
+    Uint bytes   \ * Count  : Length
+    Length bytes /          : data
+
+Half,Float,Double,Quad format.
+one:
+    2,4,8,16 bytes          : number
+list:
+    Uint bytes              : Count
+    2,4,8,16 bytes * Count  : numbers
