@@ -7,12 +7,12 @@ AnotherType {
 // define some oneof type
 
 PhoneType [
-    // enumerate CONSTANTS, Numbers, some Strings, and other types
-    MOBILE,  // === 0
-    WORK,    // === 1
-    HOME     // === 2,
-    'NONE',  // static string value
-    AnotherType
+    // enumerate Numbers, Strings, and other types
+    'MOBILE',   // === 0
+    'WORK',     // === 1
+    'HOME'      // === 2
+    'NONE',     // === 3
+    AnotherType // === 4
 ]
 
 // define some object types
@@ -30,7 +30,7 @@ User {
     Phone phones2[2,] // 2-unlimited items. 2 Phone value required. required property
     Phone phones3[1,5] = [      // 1-5 items. 1 Phone value required. optional property
         {
-            type: PhoneType.MOBILE,
+            type: 'MOBILE',
             number: '+23234234243'
         }
     ]
