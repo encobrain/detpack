@@ -30,7 +30,7 @@ User {
     Phone phones2[2,] // 2-unlimited items. 2 Phone value required. required property
     Phone phones3[1,5] = [      // 1-5 items. 1 Phone value required. optional property
         {
-            type: MOBILE,
+            type: PhoneType.MOBILE,
             number: '+23234234243'
         }
     ]
