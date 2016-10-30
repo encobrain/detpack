@@ -35,7 +35,7 @@ User {
         }
     ]
 
-    Bin[1024] photo = photo.jpg; // optional property. 0-1024 bytes.
+    Bin[1024] photo = 'photo.jpg'; // optional property. 0-1024 bytes.
 }
 
 
