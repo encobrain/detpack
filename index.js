@@ -4,7 +4,7 @@
 
 
 module.exports = {
-    compiler: require('./lib/copiler'),
+    compiler: require('./lib/compiler'),
     parser: require('./lib/parser'),
     base: require('./lib/base'),
     types: require('./lib/types'),
