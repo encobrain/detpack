@@ -75,10 +75,10 @@ Num format.
 5   Int16
 6   Int32
 7   Int64
-8   Half
-9   Float
-A   Double
-B   Quad
+8   Float16
+9   Float32
+A   Float64
+B   Float128
 C   +Inf
 D   -Inf
 E   Nan
