@@ -43,25 +43,16 @@ var detpack = require('../index'),
         ['Uint64', 'asdfasdf', new Error()],
 
         ['Int', 1, [0x81]],
-        ['Int', 128, [0x00, 0x81]],
-        ['Int', 255, [0x7F, 0x81]],
+        ['Int', 128, [0x00,0x81]],
+        ['Int', 255, [0x7F,0x81]],
         ['Int',-1, [0xFF]],
-        ['Int',-127, []],
-        ['Int', 0x3ffffffffffffe0000, [0x00,0x00,0x78,0x7F,0x7F,0x7F,0x7F,0x7F,0x7F,0xFF]],
-        ['Int', 0x400000000000000000, new Error()],
-        ['Int', 'asdfasdf', new Error()],
-        ['Int', new Error(), [0,0,0,0,0,0,0,0,0,0,0x80]],
+        ['Int',-64, [0xC0]],
+        ['Int',-65, [0x3F,0xFF]],
 
-
-        ['Int8', 1, [0x01]],
-        ['Int8', 127, [0x7F]],
-        ['Int8', -1, [0xFF]],
-        ['Int8', -128, [0x80]],
-        ['Int8', 128, new Error()],
-        ['Int8', -129, new Error()],
-        ['Int8', 'asdasdf', new Error()],
-
-
+        ['Int', 0x1ffffffffffffe0000, [0x00,0x00,0x78,0x7F,0x7F,0x7F,0x7F,0x7F,0x7F,0xBF]],
+        ['Int', 0x3ffffffffffffe0000, new Error()],
+        ['Int', -0x1ffffffffffffe0000, [0x00,0x00,0x08,0x00,0x00,0x00,0x00,0x00,0x00,0xC0]],
+        ['Int', new Error(), [0,0,0,0,0,0,0,0,0,0,0x80]]
     ]
     ;
 
@@ -84,7 +75,7 @@ module.exports = {
                 encodedBuf = type.encode(value);
 
                 if (buf instanceof Error)
-                    return test.ok(false, typeName + ' '+ entity[1] +' encode fail');
+                    return test.ok(false, typeName + ' '+ entity[1] +' encode should fail');
 
                 buf = new Buffer(buf);
 
@@ -93,8 +84,8 @@ module.exports = {
 
             } catch (err) {
                 if (buf instanceof Error) {
-                    test.ok(!buf.message || buf.message === err.code, typeName + entity[1] +' encode fail');
-                } else test.ok(false, typeName + ' '+ entity[1] + ' encode success');
+                    test.ok(!buf.message || buf.message === err.code, typeName + entity[1] +' encode should fail');
+                } else test.ok(false, typeName + ' '+ entity[1] + ' encode should success');
 
 
             }
@@ -121,7 +112,7 @@ module.exports = {
                 rez = type.decode(new Buffer(encodedBuf));
 
                 if (value instanceof Error)
-                    return test.ok(false, typeName + '['+encodedBuf+'] decode fail');
+                    return test.ok(false, typeName + '['+encodedBuf+'] decode should fail');
 
                 switch (typeof value) {
                     case 'number':
@@ -136,8 +127,8 @@ module.exports = {
                 }
             } catch (err) {
                 if (value instanceof Error) {
-                    test.ok(!value.message || value.message === err.code, typeName + '['+encodedBuf+'] decode fail')
-                } else test.ok(false, typeName + '['+encodedBuf+'] decode success');
+                    test.ok(!value.message || value.message === err.code, typeName + '['+encodedBuf+'] decode should fail')
+                } else test.ok(false, typeName + '['+encodedBuf+'] decode should success');
             }
         }
 
