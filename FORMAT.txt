@@ -52,10 +52,10 @@ list:
 
 Int format.
 one:
-    Uint bytes              : number. If bit 2^(6 + 7*N) set => negative number
+    Uint bytes              : number. If bit 6 in 7*N byte is set => negative number
 list:
     Uint bytes              : Count
-    Uint bytes              : number. If bit 2^(6 + 7*N) set => negative number
+    Uint bytes              : number. If bit 6 in 7*N byte is set => negative number
 
 Uint8,16,32,64 & Int8,16,32,64 format.
 one:
