@@ -52,7 +52,7 @@ var detpack = require('../index'),
         ['Int', -0x1ffffffffffffe0000, [0x00,0x00,0x08,0x00,0x00,0x00,0x00,0x00,0x00,0xC0]],
         ['Int', 0x3ffffffffffffe0000, new Error()],
         ['Int', new Error(), [0,0,0,0,0,0,0,0,0,0,0x80]],
-        ['Uint64', 'asdfasdf', new Error()],
+        ['Int', 'asdfasdf', new Error()],
 
     ]
     ;
