@@ -94,6 +94,18 @@ var detpack = require('../index'),
         ['Int64', -0x8000000000000000, [0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x80]],
         ['Int64', 'asdfasdf', new Error()],
 
+        ['Float16', 1, [0x00,0x3c]],
+        ['Float16', 1.5, [0x00,0x3e]],
+        ['Float16', 2047, [0xFF, 0x67]],
+        ['Float16', 2048, [0x00, 0x68]],
+        ['Float16', 2560, [0x00, 0x69]],
+        ['Float16', 2050, [0x01, 0x68]],
+        ['Float16', 32768, [0x00, 0x78]],
+        ['Float16', 40960, [0x00, 0x79]],
+        ['Float16', 32800, [0x01, 0x78]],
+        ['Float16', NaN, [0xFF,0x7F]],
+        ['Float16', Infinity, [0x00,0x7c]],
+        ['Float16', -Infinity, [0x00,0xfc]],
 
     ]
     ;
@@ -121,7 +133,7 @@ module.exports = {
 
                 buf = new Buffer(buf);
 
-                test.ok(encodedBuf.length === buf.length, typeName + ' '+ entity[1] + ' encoded length correct');
+                test.equal(encodedBuf.length, buf.length, typeName + ' '+ entity[1] + ' encoded length correct');
                 test.deepEqual(encodedBuf, buf, typeName + ' '+ entity[1] + ' encoded bytes correct');
 
             } catch (err) {
@@ -158,9 +170,13 @@ module.exports = {
 
                 switch (typeof value) {
                     case 'number':
+                        if (Number.isNaN(value)) {
+                            test.ok(Number.isNaN(rez),  typeName + '['+encodedBuf+'] decoded NaN correct');
+                            break;
+                        }
                     case 'string':
                     case 'boolean':
-                        test.ok(rez === value, typeName + '['+encodedBuf+'] decoded value correct');
+                        test.equal(rez, value, typeName + '['+encodedBuf+'] decoded value correct');
                         break;
                     case 'object':
                         test.deepEqual(rez, value, typeName + '['+encodedBuf+'] decoded value correct');
