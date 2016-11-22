@@ -24,7 +24,7 @@ var detpack = require('../index'),
         ['Uint16', 0xABCD, [0xCD,0xAB]],
         ['Uint16', 0x10000, new Error()],
         ['Uint16', -1, new Error()],
-        ['Uint32', 'asdfasdf', new Error()],
+        ['Uint16', 'asdfasdf', new Error()],
 
         ['Uint32', 1, [0x01,0x00,0x00,0x00]],
         ['Uint32', 255, [0xFF,0x00,0x00,0x00]],
@@ -53,6 +53,25 @@ var detpack = require('../index'),
         ['Int', 0x3ffffffffffffe0000, new Error()],
         ['Int', new Error(), [0,0,0,0,0,0,0,0,0,0,0x80]],
         ['Int', 'asdfasdf', new Error()],
+
+        ['Int8', 1, [0x01]],
+        ['Int8', 127, [0x7F]],
+        ['Int8', 128, new Error()],
+        ['Int8', -1, [0xFF]],
+        ['Int8', -128, [0x80]],
+        ['Int8', -129, new Error()],
+        ['Int8', 'asdfasdf', new Error()],
+
+        ['Int16', 1, [0x01,0x00]],
+        ['Int16', 255, [0xFF,0x00]],
+        ['Int16', 256, [0x00,0x01]],
+        ['Int16', 0x7FFF, [0xFF,0x7F]],
+        ['Int16', 0x8000, new Error()],
+        ['Int16', -1, [0xFF,0xFF]],
+        ['Int16', -0x8000, [0x00,0x80]],
+        ['Int16', -0x8001, new Error()],
+        ['Int16', 'asdfasdf', new Error()],
+
 
     ]
     ;
