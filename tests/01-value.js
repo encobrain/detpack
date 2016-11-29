@@ -236,8 +236,8 @@ module.exports = {
                 }
             } catch (err) {
                 if (value instanceof Error) {
-                    test.ok(!value.message || value.message === err.code, typeName + '['+encodedBuf+'] decode should fail')
-                } else test.ok(false, typeName + '['+encodedBuf+'] decode should success');
+                    test.ok(!value.message || value.message === err.code, typeName + '['+encodedBuf+'] decode should fail: ' + err)
+                } else test.ok(false, typeName + '['+encodedBuf+'] decode should success: ' + err);
             }
         }
 
