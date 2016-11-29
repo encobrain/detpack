@@ -179,17 +179,17 @@ module.exports = {
                 encodedBuf = type.encode(value);
 
                 if (buf instanceof Error)
-                    return test.ok(false, typeName + ' '+ entity[1] +' encode should fail');
+                    return test.ok(false, typeName + ' '+ value +' encode should fail');
 
                 buf = new Buffer(buf);
 
-                test.equal(encodedBuf.length, buf.length, typeName + ' '+ entity[1] + ' encoded length correct');
-                test.deepEqual(encodedBuf, buf, typeName + ' '+ entity[1] + ' encoded bytes correct');
+                test.equal(encodedBuf.length, buf.length, typeName + ' '+ value + ' encoded length correct');
+                test.deepEqual(encodedBuf, buf, typeName + ' '+ value + ' encoded bytes correct');
 
             } catch (err) {
                 if (buf instanceof Error) {
-                    test.ok(!buf.message || buf.message === err.code, typeName + entity[1] + ' encode should fail: ' + err);
-                } else test.ok(false, typeName + ' '+ entity[1] + ' encode should success: ' + err);
+                    test.ok(!buf.message || buf.message === err.code, typeName + ' ' + value + ' encode should fail: ' + err);
+                } else test.ok(false, typeName + ' '+ value + ' encode should success: ' + err);
 
 
             }
