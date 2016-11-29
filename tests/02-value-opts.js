@@ -35,6 +35,18 @@ var detpack = require('../index'),
         ['Uint64', [10,255],  255, new Error()],
         ['Uint64', [10,255],  new Error(), [0xFF,0x00,0x00,0x00,0x00,0x00,0x00,0x00]],
         ['Uint64', [10,255],  254, [0xFE,0x00,0x00,0x00,0x00,0x00,0x00,0x00]],
+
+        ['Int', [-10,63], 15, [0x8F]],
+        ['Int', [-10,63], 63, new Error()],
+        ['Int', [-10,64], 63, [0xBF]],
+        ['Int', [-10,65], 64, [0x40,0x80]],
+        ['Int', [-10,63], -10, [0xF6]],
+        ['Int', [-10,63], -11, new Error()],
+        ['Int', [-10,63], new Error(), [0x00,0x80]]
+
+
+
+
     ]
     ;
 
@@ -69,8 +81,8 @@ module.exports = {
 
             } catch (err) {
                 if (buf instanceof Error) {
-                    test.ok(!buf.message || buf.message === err.code, typeName + ' ' + value +' encode should fail');
-                } else test.ok(false, typeName + ' '+ value + ' encode should success');
+                    test.ok(!buf.message || buf.message === err.code, typeName + ' ' + value +' encode should fail: ' + err);
+                } else test.ok(false, typeName + ' '+ value + ' encode should success: ' + err);
 
 
             }
