@@ -188,8 +188,8 @@ module.exports = {
 
             } catch (err) {
                 if (buf instanceof Error) {
-                    test.ok(!buf.message || buf.message === err.code, typeName + entity[1] +' encode should fail');
-                } else test.ok(false, typeName + ' '+ entity[1] + ' encode should success');
+                    test.ok(!buf.message || buf.message === err.code, typeName + entity[1] + ' encode should fail: ' + err);
+                } else test.ok(false, typeName + ' '+ entity[1] + ' encode should success: ' + err);
 
 
             }
