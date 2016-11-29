@@ -12,7 +12,11 @@ var detpack = require('../index'),
         ['Uint', [10,255],  254, [0x7E,0x81]],
         ['Uint', [10,255],  new Error(), [0x7F,0x00,0x80]],
 
-
+        ['Uint8', [10,255],  15, [0x0F]],
+        ['Uint8', [10,255],  9, new Error()],
+        ['Uint8', [10,255],  255, new Error()],
+        ['Uint8', [10,255],  new Error(), [0xFF]],
+        ['Uint8', [10,255],  254, [0xFE]],
 
 
     ]
