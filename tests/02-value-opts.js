@@ -98,6 +98,10 @@ var detpack = require('../index'),
         ['Int64', [-10,63], -10, [0xF6,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF]],
         ['Int64', [-10,63], -11, new Error()],
         ['Int64', [10,20], new Error(), [0xFF,0x00,0x00,0x00,0x00,0x00,0x00,0x00]],
+
+        ['Bin', [-1,20], Buffer.from([0,1,2,3]), new Error()],
+        ['Bin', [0,5], Buffer.from([0,1,2,3,4,5]), new Error()],
+        ['Bin', [0,5], new Error(), [0xFF]],
     ]
     ;
 
