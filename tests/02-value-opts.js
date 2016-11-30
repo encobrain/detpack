@@ -125,7 +125,7 @@ module.exports = {
                 if (buf instanceof Error)
                     return test.ok(false, typeName + ' '+ value +' encode should fail');
 
-                buf = new Buffer(buf);
+                buf = Buffer.from(buf);
 
                 test.equal(encodedBuf.length, buf.length, typeName + ' '+ value + ' encoded length correct');
                 test.deepEqual(encodedBuf, buf, typeName + ' '+ value + ' encoded bytes correct');
@@ -160,7 +160,7 @@ module.exports = {
             try {
                 type.setOpts(opts);
 
-                rez = type.decode(new Buffer(encodedBuf));
+                rez = type.decode(Buffer.from(encodedBuf));
 
                 if (value instanceof Error)
                     return test.ok(false, typeName + '['+encodedBuf+'] decode should fail');
