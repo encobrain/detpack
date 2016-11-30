@@ -103,6 +103,14 @@ var detpack = require('../index'),
         ['Float16', [-10,10], -10.1, new Error()],
         ['Float16', [-10,10], new Error(), [0x0C, 0xC9]],
 
+        ['Float32', [-10,10], -10, [0x00,0x00,0x20,0xC1]],
+        ['Float32', [-10,10], -10.1, new Error()],
+        ['Float32', [-10,10], new Error(), [0x9A,0x99,0x21,0xC1]],
+
+        ['Float64', [-10,10], -10, [0x00,0x00,0x00,0x00,0x00,0x00,0x24,0xC0]],
+        ['Float64', [-10,10], -10.1, new Error()],
+        ['Float64', [-10,10], new Error(), [0x33,0x33,0x33,0x33,0x33,0x33,0x24,0xC0]],
+
         ['Bin', [-1,20], Buffer.from([0,1,2,3]), new Error()],
         ['Bin', [0,5], Buffer.from([0,1,2,3,4,5]), new Error()],
         ['Bin', [0,5], new Error(), [0xFF]],
