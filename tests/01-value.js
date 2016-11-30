@@ -154,8 +154,8 @@ var detpack = require('../index'),
             0xD5,0xAD,0xD5,0xA1,0xD5,0xBF,0xD5,0xA1,0xD5,0xB6,
             0xD6,0x84,0xD5,0xB6,0xD5,0xA5,0xD6,0x80,0xD5,0xA8]],
 
-        ['Bin', new Buffer([0,1,2,3,4,5]), [0x86,0x00,0x01,0x02,0x03,0x04,0x05]],
-        ['Bin', 'aasdf', [0x85,0x61,0x61,0x73,0x64,0x66]],
+        ['Bin', Buffer.from([0,1,2,3,4,5]), [0x86,0x00,0x01,0x02,0x03,0x04,0x05]],
+        ['Bin', 'aasdf', new Error()],
         ['Bin', {}, new Error()],
         ['Bin', 123123, new Error()]
     ]
@@ -182,7 +182,7 @@ module.exports = {
                 if (buf instanceof Error)
                     return test.ok(false, typeName + ' '+ value +' encode should fail');
 
-                buf = new Buffer(buf);
+                buf = Buffer.from(buf);
 
                 test.equal(encodedBuf.length, buf.length, typeName + ' '+ value + ' encoded length correct');
                 test.deepEqual(encodedBuf, buf, typeName + ' '+ value + ' encoded bytes correct');
@@ -214,7 +214,7 @@ module.exports = {
             if (encodedBuf instanceof Error) return;
 
             try {
-                rez = type.decode(new Buffer(encodedBuf));
+                rez = type.decode(Buffer.from(encodedBuf));
 
                 if (value instanceof Error)
                     return test.ok(false, typeName + '['+encodedBuf+'] decode should fail');
