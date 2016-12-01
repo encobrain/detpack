@@ -88,6 +88,12 @@ var detpack = require('../index'),
             0x00,0x00,0x00,0x00,0x00,0x00,0x08,0x40]],
         ['Float64', [2,3], [1,2,3,4], new Error()],
         ['Float64', [2,3], new Error(), [0x85]],
+
+        ['Num', [-1,5], [1,2], new Error()],
+        ['Num', [2,3], [1], new Error()],
+        ['Num', [2,3], [1,2,3], [0x83,0x00,0x01,0x02,0x00,0x03]],
+        ['Num', [2,3], [1,2,3,4], new Error()],
+        ['Num', [2,3], new Error(), [0x85]],
     ]
     ;
 
