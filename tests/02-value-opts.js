@@ -122,7 +122,11 @@ var detpack = require('../index'),
         ['Utf8', [2,5], 'abcdef', new Error()],
         ['Utf8', [2,5], 'abcde', [0x85,0x61,0x62,0x63,0x64,0x65]],
         ['Utf8', [2,5], 'ab', [0x82,0x61,0x62]],
-        ['Utf8', [2,5], new Error(), [0x81,0x61]]
+        ['Utf8', [2,5], new Error(), [0x81,0x61]],
+
+        ['Num', [-10, 10], -11, new Error()],
+        ['Num', [-10, 10], 10, new Error()],
+        ['Num', [-10, 10], new Error(), [0x10,0x00,0x01]],
 
     ]
     ;
