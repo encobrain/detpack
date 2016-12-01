@@ -27,7 +27,7 @@ Bin
 Uint format.
 Encode example for 0x01020304 number: 0x 04 06 08 88
 one:
-    0-8 bytes               : 0xxxxxxx
+    0-7 bytes               : 0xxxxxxx
     1 byte                  : 1xxxxxxx
 list:
     Uint bytes              : Count
