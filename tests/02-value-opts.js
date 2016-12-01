@@ -114,6 +114,8 @@ var detpack = require('../index'),
         ['Bin', [-1,20], Buffer.from([0,1,2,3]), new Error()],
         ['Bin', [0,5], Buffer.from([0,1,2,3,4,5]), new Error()],
         ['Bin', [0,5], new Error(), [0xFF]],
+
+        ['Bool', [0,5], true, new Error()]
     ]
     ;
 
