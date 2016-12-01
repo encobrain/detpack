@@ -115,7 +115,15 @@ var detpack = require('../index'),
         ['Bin', [0,5], Buffer.from([0,1,2,3,4,5]), new Error()],
         ['Bin', [0,5], new Error(), [0xFF]],
 
-        ['Bool', [0,5], true, new Error()]
+        ['Bool', [0,5], true, new Error()],
+
+        ['Utf8', [-1,5], 'abc', new Error()],
+        ['Utf8', [2,5], 'a', new Error()],
+        ['Utf8', [2,5], 'abcdef', new Error()],
+        ['Utf8', [2,5], 'abcde', [0x85,0x61,0x62,0x63,0x64,0x65]],
+        ['Utf8', [2,5], 'ab', [0x82,0x61,0x62]],
+        ['Utf8', [2,5], new Error(), [0x81,0x61]]
+
     ]
     ;
 
