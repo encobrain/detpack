@@ -94,6 +94,25 @@ var detpack = require('../index'),
         ['Num', [2,3], [1,2,3], [0x83,0x00,0x01,0x02,0x00,0x03]],
         ['Num', [2,3], [1,2,3,4], new Error()],
         ['Num', [2,3], new Error(), [0x85]],
+
+        ['Bool', [-1,5], [1,2], new Error()],
+        ['Bool', [2,3], [1], new Error()],
+        ['Bool', [2,10], [true,false,true,true,false,true,false,false,false,true], [0x8A,0xB4,0x40]],
+        ['Bool', [2,3], [1,2,3,4], new Error()],
+        ['Bool', [2,3], new Error(), [0x85]],
+
+        ['Utf8', [-1,5], [1,2], new Error()],
+        ['Utf8', [2,3], [1], new Error()],
+        ['Utf8', [2,3], ['a','b','c'], [0x83,0x81,0x61,0x81,0x62,0x81,0x63]],
+        ['Utf8', [2,3], [1,2,3,4], new Error()],
+        ['Utf8', [2,3], new Error(), [0x85]],
+
+        ['Bin', [-1,5], [1,2], new Error()],
+        ['Bin', [2,3], [1], new Error()],
+        ['Bin', [2,3], [Buffer.from([0,1,2]),Buffer.from([3,4]),Buffer.from([5])],
+            [0x83,0x83,0x00,0x01,0x02,0x82,0x03,0x04,0x81,0x05]],
+        ['Bin', [2,3], [1,2,3,4], new Error()],
+        ['Bin', [2,3], new Error(), [0x85]],
     ]
     ;
 
