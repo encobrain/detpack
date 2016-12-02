@@ -141,7 +141,9 @@ module.exports = {
                 opts = entity[1],
                 value = entity[2],
                 buf = entity[3],
-                type = new (detpack.types[typeName])(),
+                type = typeof typeName === 'string' ?
+                    new (detpack.types[typeName])() :
+                    typeName,
 
                 encodedBuf;
 
@@ -180,7 +182,9 @@ module.exports = {
             var typeName = entity[0],
                 opts = entity[1],
                 value = entity[2],
-                type = new (detpack.types[typeName])(),
+                type = typeof typeName === 'string' ?
+                    new (detpack.types[typeName])() :
+                    typeName,
 
                 encodedBuf = entity[3],
                 rez;
