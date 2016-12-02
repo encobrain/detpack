@@ -170,7 +170,9 @@ module.exports = {
             var typeName = entity[0],
                 value = entity[1],
                 buf = entity[2],
-                type = new (detpack.types[typeName])(),
+                type = typeof typeName === 'string' ?
+                    new (detpack.types[typeName])() :
+                    typeName,
 
                 encodedBuf;
 
@@ -206,7 +208,9 @@ module.exports = {
         function decode (entity) {
             var typeName = entity[0],
                 value = entity[1],
-                type = new (detpack.types[typeName])(),
+                type = typeof typeName === 'string' ?
+                    new (detpack.types[typeName])() :
+                    typeName,
 
                 encodedBuf = entity[2],
                 rez;
