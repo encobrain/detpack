@@ -1,0 +1,23 @@
+User {
+    Utf8 name;
+}
+
+Req {
+    Uint id;
+    Utf8 rqData;
+}
+
+Res {
+    Uint id;
+    Utf8 rsData;
+}
+
+Message [
+    'STR',
+    10,
+    20,
+    User,
+    Req,
+    Res
+]
+
