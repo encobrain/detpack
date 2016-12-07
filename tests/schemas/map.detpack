@@ -1,0 +1,13 @@
+User {
+    Utf8 name;
+    Uint age;
+    Utf8 items[];
+}
+
+UserDefaults {
+    Utf8 name = 'Unnamed';
+    Uint age = 100500;
+    Utf8 items[] = [
+        'phone', 'tablet'
+    ];
+}
