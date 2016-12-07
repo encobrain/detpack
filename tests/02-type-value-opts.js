@@ -126,8 +126,7 @@ var detpack = require('../index'),
 
         ['Num', [-10, 10], -11, new Error()],
         ['Num', [-10, 10], 11, new Error()],
-        ['Num', [-10, 10], new Error(), [0x10,0x00,0x01]],
-
+        ['Num', [-10, 10], new Error(), [0x10,0x00,0x01]]
     ]
     ;
 
@@ -164,8 +163,8 @@ module.exports = {
 
             } catch (err) {
                 if (buf instanceof Error) {
-                    test.ok(!buf.message || buf.message === err.code, typeName + ' ' + value +' encode should fail: ' + err);
-                } else test.ok(false, typeName + ' '+ value + ' encode should success: ' + err);
+                    test.ok(!buf.message || buf.message === err.code, typeName + ' ' + value +' encode should fail: ' + err.stack);
+                } else test.ok(false, typeName + ' '+ value + ' encode should success: ' + err.stack);
 
 
             }
@@ -217,8 +216,8 @@ module.exports = {
                 }
             } catch (err) {
                 if (value instanceof Error) {
-                    test.ok(!value.message || value.message === err.code, typeName + '['+encodedBuf+'] decode should fail: ' + err);
-                } else test.ok(false, typeName + '['+encodedBuf+'] decode should success: ' + err);
+                    test.ok(!value.message || value.message === err.code, typeName + '['+encodedBuf+'] decode should fail: ' + err.stack);
+                } else test.ok(false, typeName + '['+encodedBuf+'] decode should success: ' + err.stack);
             }
         }
 
