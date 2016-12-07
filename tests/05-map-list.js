@@ -6,12 +6,12 @@ var detpack = require('../index'),
 
     mapSchema = detpack.compiler.compileFileSync(__dirname+'/schemas/map.detpack'),
 
-    user = new mapSchema.User(),
+    User = mapSchema.User,
 
     entities = [
-        [user, [-1,5], [{name:'foo',age:10,items:[]}], new Error()],
-        [user, [2,5], [{name:'foo',age:10,items:[]}], new Error()],
-        [user, [2,5], [{name:'foo1',age:10,items:['a','b']},{name:'foo2',age:20,items:['c','d']}], 
+        [User, [-1,5], [{name:'foo',age:10,items:[]}], new Error()],
+        [User, [2,5], [{name:'foo',age:10,items:[]}], new Error()],
+        [User, [2,5], [{name:'foo1',age:10,items:['a','b']},{name:'foo2',age:20,items:['c','d']}],
             [0x82,0x84,0x66,0x6f,0x6f,0x31,0x8a,0x82,0x81,0x61,0x81,0x62,0x84,0x66,0x6f,0x6f,0x32,0x94,0x82,0x81,0x63,0x81,0x64]],
     ]
     ;
@@ -22,7 +22,7 @@ module.exports = {
     'Encode': function (test) {
 
         function encode (entity) {
-            var type = entity[0],
+            var type = new (entity[0])(),
                 opts = entity[1],
                 typeName = type.constructor.name,
                 value = entity[2],
@@ -62,7 +62,8 @@ module.exports = {
     'Decode': function (test) {
 
         function decode (entity) {
-            var type = entity[0],
+            var type = new (entity[0])(),
+                opts = entity[1],
                 typeName = type.constructor.name,
                 value = entity[4] || entity[2],
 
@@ -72,6 +73,8 @@ module.exports = {
             if (encodedBuf instanceof Error) return;
 
             try {
+                type.setListOpts(opts);
+
                 rez = type.decode(Buffer.from(encodedBuf));
 
                 function delType(item) { delete item.__type__; }

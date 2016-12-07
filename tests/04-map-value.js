@@ -6,43 +6,43 @@ var detpack = require('../index'),
 
     mapSchema = detpack.compiler.compileFileSync(__dirname+'/schemas/map.detpack'),
 
-    user = new mapSchema.User(),
-    userDefaults = new mapSchema.UserDefaults(),
-    userOpts = new mapSchema.UserOpts(),
+    User = mapSchema.User,
+    UserDefaults = mapSchema.UserDefaults,
+    UserOpts = mapSchema.UserOpts,
 
     entities = [
-        [user, {}, new Error()],
-        [user, {name: 'foo'}, new Error()],
-        [user, {age: 10}, new Error()],
-        [user, {items: ['book','pen']}, new Error()],
-        [user, {name:'foo', age:10, items:['book','pen']},
+        [User, {}, new Error()],
+        [User, {name: 'foo'}, new Error()],
+        [User, {age: 10}, new Error()],
+        [User, {items: ['book','pen']}, new Error()],
+        [User, {name:'foo', age:10, items:['book','pen']},
             [0x83,0x66,0x6f,0x6f,0x8a,0x82,0x84,0x62,0x6f,0x6f,0x6b,0x83,0x70,0x65,0x6e]],
 
-        [userDefaults, {},
+        [UserDefaults, {},
             [0x00],
             {name: 'Unnamed', age: 100500, items:['phone', 'tablet']}],
-        [userDefaults, {name: 'foo'},
+        [UserDefaults, {name: 'foo'},
             [0x80,0x83,0x66,0x6f,0x6f],
             {name: 'foo', age: 100500, items:['phone', 'tablet']}],
-        [userDefaults, {age: 10},
+        [UserDefaults, {age: 10},
             [0x40,0x8a],
             {name: 'Unnamed', age: 10, items:['phone', 'tablet']}],
-        [userDefaults, {items: ['book','pen']},
+        [UserDefaults, {items: ['book','pen']},
             [0x20,0x82,0x84,0x62,0x6f,0x6f,0x6b,0x83,0x70,0x65,0x6e],
             {name: 'Unnamed', age: 100500, items:['book', 'pen']}],
-        [userDefaults, {name:'foo', age:10, items:['book','pen']},
+        [UserDefaults, {name:'foo', age:10, items:['book','pen']},
             [0xe0,0x83,0x66,0x6f,0x6f,0x8a,0x82,0x84,0x62,0x6f,0x6f,0x6b,0x83,0x70,0x65,0x6e]],
 
-        [userOpts, {name:'LongName', age: 10, items: ['book','pen']}, new Error()],
-        [userOpts, {name:'foo', age: 100500, items: ['book','pen']}, new Error()],
-        [userOpts, {name:'foo', age: 10, items: ['longItemName','pen']}, new Error()],
-        [userOpts, {name:'foo', age: 10, items: ['book']}, new Error()],
-        [userOpts, {name:'foo', age: 10, items: ['book','pen']},
+        [UserOpts, {name:'LongName', age: 10, items: ['book','pen']}, new Error()],
+        [UserOpts, {name:'foo', age: 100500, items: ['book','pen']}, new Error()],
+        [UserOpts, {name:'foo', age: 10, items: ['longItemName','pen']}, new Error()],
+        [UserOpts, {name:'foo', age: 10, items: ['book']}, new Error()],
+        [UserOpts, {name:'foo', age: 10, items: ['book','pen']},
             [0x83,0x66,0x6f,0x6f,0x8a,0x82,0x84,0x62,0x6f,0x6f,0x6b,0x83,0x70,0x65,0x6e]],
-        [userOpts, new Error(), [0x87,0x66,0x6f,0x6f,0x8a,0x82,0x84,0x62,0x6f,0x6f,0x6b,0x83,0x70,0x65,0x6e]],
-        [userOpts, new Error(), [0x83,0x66,0x6f,0x6f,0x89,0x82,0x84,0x62,0x6f,0x6f,0x6b,0x83,0x70,0x65,0x6e]],
-        [userOpts, new Error(), [0x83,0x66,0x6f,0x6f,0x8a,0x81,0x84,0x62,0x6f,0x6f,0x6b,0x83,0x70,0x65,0x6e]],
-        [userOpts, new Error(), [0x83,0x66,0x6f,0x6f,0x8a,0x82,0x87,0x62,0x6f,0x6f,0x6b,0x83,0x70,0x65,0x6e]]
+        [UserOpts, new Error(), [0x87,0x66,0x6f,0x6f,0x8a,0x82,0x84,0x62,0x6f,0x6f,0x6b,0x83,0x70,0x65,0x6e]],
+        [UserOpts, new Error(), [0x83,0x66,0x6f,0x6f,0x89,0x82,0x84,0x62,0x6f,0x6f,0x6b,0x83,0x70,0x65,0x6e]],
+        [UserOpts, new Error(), [0x83,0x66,0x6f,0x6f,0x8a,0x81,0x84,0x62,0x6f,0x6f,0x6b,0x83,0x70,0x65,0x6e]],
+        [UserOpts, new Error(), [0x83,0x66,0x6f,0x6f,0x8a,0x82,0x87,0x62,0x6f,0x6f,0x6b,0x83,0x70,0x65,0x6e]]
     ]
     ;
 
@@ -52,7 +52,7 @@ module.exports = {
     'Encode': function (test) {
 
         function encode (entity) {
-            var type = entity[0],
+            var type = new (entity[0])(),
                 typeName = type.constructor.name,
                 value = entity[1],
                 buf = entity[2],
@@ -89,7 +89,7 @@ module.exports = {
     'Decode': function (test) {
 
         function decode (entity) {
-            var type = entity[0],
+            var type = new (entity[0])(),
                 typeName = type.constructor.name,
                 value = entity[3] || entity[1],
 
