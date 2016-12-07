@@ -112,7 +112,7 @@ var detpack = require('../index'),
         ['Bin', [2,3], [Buffer.from([0,1,2]),Buffer.from([3,4]),Buffer.from([5])],
             [0x83,0x83,0x00,0x01,0x02,0x82,0x03,0x04,0x81,0x05]],
         ['Bin', [2,3], [1,2,3,4], new Error()],
-        ['Bin', [2,3], new Error(), [0x85]],
+        ['Bin', [2,3], new Error(), [0x85]]
     ]
     ;
 
@@ -149,8 +149,8 @@ module.exports = {
 
             } catch (err) {
                 if (buf instanceof Error) {
-                    test.ok(!buf.message || buf.message === err.code, typeName + ' [' + values +'] encode should fail: ' + err);
-                } else test.ok(false, typeName + ' ['+ values + '] encode should success: ' + err);
+                    test.ok(!buf.message || buf.message === err.code, typeName + ' [' + values +'] encode should fail: ' + err.stack);
+                } else test.ok(false, typeName + ' ['+ values + '] encode should success: ' + err.stack);
 
 
             }
@@ -187,8 +187,8 @@ module.exports = {
                 test.deepEqual(rez, values, typeName + '['+encodedBuf+'] decoded value correct');
             } catch (err) {
                 if (values instanceof Error) {
-                    test.ok(!values.message || values.message === err.code, typeName + '['+encodedBuf+'] decode should fail: ' + err);
-                } else test.ok(false, typeName + '['+encodedBuf+'] decode should success: ' + err);
+                    test.ok(!values.message || values.message === err.code, typeName + '['+encodedBuf+'] decode should fail: ' + err.stack);
+                } else test.ok(false, typeName + '['+encodedBuf+'] decode should success: ' + err.stack);
             }
         }
 
