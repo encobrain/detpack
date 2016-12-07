@@ -11,3 +11,9 @@ UserDefaults {
         'phone', 'tablet'
     ];
 }
+
+UserOpts {
+    Utf8[2,5] name;
+    Uint[10,20] age;
+    Utf8[5] items[];
+}
