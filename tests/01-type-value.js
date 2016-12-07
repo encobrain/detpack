@@ -7,6 +7,7 @@ var detpack = require('../index'),
     simple = detpack.compiler.compileFileSync(__dirname+'/schemas/simple.detpack'),
 
     user = new simple.User(),
+    userDefaults = new simple.UserDefaults(),
 
     entities = [
         ['Uint', 1, [0x81]],
@@ -174,9 +175,7 @@ module.exports = {
             var typeName = entity[0],
                 value = entity[1],
                 buf = entity[2],
-                type = typeof typeName === 'string' ?
-                    new (detpack.types[typeName])() :
-                    typeName,
+                type = new (detpack.types[typeName])(),
 
                 encodedBuf;
 
@@ -195,8 +194,8 @@ module.exports = {
 
             } catch (err) {
                 if (buf instanceof Error) {
-                    test.ok(!buf.message || buf.message === err.code, typeName + ' ' + value + ' encode should fail: ' + err);
-                } else test.ok(false, typeName + ' '+ value + ' encode should success: ' + err);
+                    test.ok(!buf.message || buf.message === err.code, typeName + ' ' + value + ' encode should fail: ' + err.stack);
+                } else test.ok(false, typeName + ' '+ value + ' encode should success: ' + err.stack);
 
 
             }
@@ -245,8 +244,8 @@ module.exports = {
                 }
             } catch (err) {
                 if (value instanceof Error) {
-                    test.ok(!value.message || value.message === err.code, typeName + '['+encodedBuf+'] decode should fail: ' + err)
-                } else test.ok(false, typeName + '['+encodedBuf+'] decode should success: ' + err);
+                    test.ok(!value.message || value.message === err.code, typeName + '['+encodedBuf+'] decode should fail: ' + err.stack)
+                } else test.ok(false, typeName + '['+encodedBuf+'] decode should success: ' + err.stack);
             }
         }
 
