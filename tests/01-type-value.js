@@ -4,11 +4,6 @@
 
 var detpack = require('../index'),
 
-    simple = detpack.compiler.compileFileSync(__dirname+'/schemas/simple.detpack'),
-
-    user = new simple.User(),
-    userDefaults = new simple.UserDefaults(),
-
     entities = [
         ['Uint', 1, [0x81]],
         ['Uint', 128, [0x00, 0x81]],
