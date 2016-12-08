@@ -14,8 +14,7 @@ PhoneType [
     0.123,       // fract number
     0x1234AF,    // hex number
     0b101001,    // binary number
-    0o7245,       // octo number
-    null
+    0o7245       // octo number
 ]
 
 Book {
@@ -28,9 +27,9 @@ Pen {
     Utf8 color;
 }
 
-
 Item [
-    // enumerate Few types. Each type should have minimum one unique property
+    // enumerate Few types and string. Each type should have minimum one unique property name
+    'EMPTY',
     Book,
     Pen
 ]
