@@ -1,44 +1,63 @@
 // Simple example
 
-AnotherType {
-    f32 number;
-}
+// define some type
+// OneofTypeName : id []
+// MapTypeName:id {}
 
-// define some oneof type
-
-PhoneType [
-    // enumerate Numbers, Strings, and other types
+PhoneType : 0 [
+    // enumerate Numbers, Strings, null
     'MOBILE',    // === 0
     'WORK',      // === 1
     'HOME'       // === 2
     'NONE',      // === 3
-    AnotherType, // === 4
     123,         // simple number
     0.123,       // fract number
     0x1234AF,    // hex number
     0b101001,    // binary number
-    0o7245       // octo number
+    0o7245,       // octo number
+    null
+]
+
+Book : 1 {
+    Uint id;
+    Utf8 title;
+}
+
+Pen : 2 {
+    Uint id;
+    Utf8 color;
+}
+
+
+Item : 3 [
+    // enumerate Few types. Each type should have minimum one unique property
+    Book,
+    Pen
 ]
 
 // define some object types
 
-Phone {
-    PhoneType type = MOBILE; // after "=" specify default value for optional property
+Phone : 4 {
+    // after "=" specify default value for optional property
+    // all Unknown ID names gets from compile options. For example DEFAULT_PHONE_TYPE
+    PhoneType type = DEFAULT_PHONE_TYPE;
     Utf8[12] number; // 0-12 chars. required property
 }
 
-User {
+User : 5 {
     Utf8 name; // unlimited chars ; required property
-    Utf8[2,20] surname; // 2-20 chars. required property. require min 2 chars
+    Utf8[2,20] surname = null; // 2-20 chars. optional property. require min 2 chars if set
     Utf8[10,] address; // 10-unlimited chars. 10 chars min required
-    Phone phones[];  // unlimited phone list. required property
-    Phone phones2[2,] // 2-unlimited items. 2 Phone value required. required property
-    Phone phones3[1,5] = [      // 1-5 items. 1 Phone value required. optional property
+    Phone phones[];  // unlimited list. required property
+    Phone phones2[2,] // 2-unlimited items. 2 Phone values required. required property
+    Phone phones3[1,5] = [      // 1-5 items. 1 Phone value required. optional property with default list
         {
             type: 'MOBILE',
             number: '+23234234243'
         }
     ]
+
+    Item items[];
 
     Bin[1024] photo = DEFAULT_PHOTO; // optional property. 0-1024 bytes. DEFAULT_PHOTO takes from compile options
 }
