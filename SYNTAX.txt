@@ -1,10 +1,10 @@
 // Simple example
 
 // define some type
-// OneofTypeName : id []
-// MapTypeName:id {}
+// OneofTypeName  []
+// MapTypeName {}
 
-PhoneType : 0 [
+PhoneType [
     // enumerate Numbers, Strings, null
     'MOBILE',    // === 0
     'WORK',      // === 1
@@ -18,18 +18,18 @@ PhoneType : 0 [
     null
 ]
 
-Book : 1 {
+Book {
     Uint id;
     Utf8 title;
 }
 
-Pen : 2 {
+Pen {
     Uint id;
     Utf8 color;
 }
 
 
-Item : 3 [
+Item [
     // enumerate Few types. Each type should have minimum one unique property
     Book,
     Pen
@@ -37,14 +37,14 @@ Item : 3 [
 
 // define some object types
 
-Phone : 4 {
+Phone {
     // after "=" specify default value for optional property
     // all Unknown ID names gets from compile options. For example DEFAULT_PHONE_TYPE
     PhoneType type = DEFAULT_PHONE_TYPE;
     Utf8[12] number; // 0-12 chars. required property
 }
 
-User : 5 {
+User {
     Utf8 name; // unlimited chars ; required property
     Utf8[2,20] surname = null; // 2-20 chars. optional property. require min 2 chars if set
     Utf8[10,] address; // 10-unlimited chars. 10 chars min required
