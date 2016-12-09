@@ -1,26 +1,26 @@
-Types
+Types                          ID
 
-Num
-   Uint
-        Uint8  / U8
-        Uint16 / U16
-        Uint32 / U32
-        Uint64 / U64
-   Int
-        Int8  / I8
-        Int16 / I16
-        Int32 / I32
-        Int64 / I64
-   Float16  / Half   / F16
-   Float32  / Float  / F32
-   Float64  / Double / F64
-   Float128 / Quad   / F128
+Num                            FF
+   Uint                        FE
+        Uint8  / U8            FD
+        Uint16 / U16           FC
+        Uint32 / U32           FB
+        Uint64 / U64           FA
+   Int                         F9
+        Int8  / I8             F8
+        Int16 / I16            F7
+        Int32 / I32            F6
+        Int64 / I64            F5
+   Float16  / Half   / F16     F4
+   Float32  / Float  / F32     F3
+   Float64  / Double / F64     F2
+   Float128 / Quad   / F128    F1
    +Inf
    -Inf
    Nan
-Utf8
-Bool
-Bin
+Utf8                           F0
+Bool                           EF
+Bin                            EE
 
 
 
