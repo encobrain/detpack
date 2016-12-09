@@ -16,6 +16,9 @@ PhoneType [
     0x1234AF,    // hex number
     0b101001,    // binary number
     0o7245       // octo number
+    null,
+    true,
+    false
 ]
 
 Book {
