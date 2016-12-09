@@ -1,10 +1,11 @@
 // Simple example
 
-// define some type
-// OneofTypeName  []
-// MapTypeName {}
+// define types
 
-PhoneType [
+// OneofTypeName [...]
+// MapTypeName {...}
+
+PhoneType
     // enumerate Numbers, Strings, null
     'MOBILE',    // === 0
     'WORK',      // === 1
