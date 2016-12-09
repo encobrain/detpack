@@ -10,14 +10,14 @@ var detpack = require('../index'),
 
     entities = [
         [Message, 1, new Error()],
-        [Message, 'STR', [0x00]],
-        [Message, 10, [0x20]],
-        [Message, 20, [0x40]],
+        [Message, 'STR', [0x03,0x00]],
+        [Message, 10, [0x03,0x20]],
+        [Message, 20, [0x03,0x40]],
         [Message, {}, new Error()],
-        [Message, {name: 'foo'}, [0x60,0x83,0x66,0x6f,0x6f], {name: 'foo', __type__: 'User'}],
-        [Message, {id:10, rqData: 'abc'}, [0x80,0x8a,0x83,0x61,0x62,0x63], {id: 10, rqData: 'abc', __type__:'Req'}],
-        [Message, {id:20, rsData: 'cde'}, [0xa0,0x94,0x83,0x63,0x64,0x65], {id: 20, rsData: 'cde', __type__:'Res'}],
-        [Message, new Error(), [0xF0,0x94,0x83,0x63,0x64,0x65]]
+        [Message, {name: 'foo'}, [0x03,0x60,0x83,0x66,0x6f,0x6f], {name: 'foo', __type__: 'User'}],
+        [Message, {id:10, rqData: 'abc'}, [0x03,0x80,0x8a,0x83,0x61,0x62,0x63], {id: 10, rqData: 'abc', __type__:'Req'}],
+        [Message, {id:20, rsData: 'cde'}, [0x03,0xa0,0x94,0x83,0x63,0x64,0x65], {id: 20, rsData: 'cde', __type__:'Res'}],
+        [Message, new Error(), [0x03,0xF0,0x94,0x83,0x63,0x64,0x65]]
     ]
     ;
 
