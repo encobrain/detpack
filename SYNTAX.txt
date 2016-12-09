@@ -5,7 +5,7 @@
 // OneofTypeName [...]
 // MapTypeName {...}
 
-PhoneType
+PhoneType [
     // enumerate Numbers, Strings, null
     'MOBILE',    // === 0
     'WORK',      // === 1
